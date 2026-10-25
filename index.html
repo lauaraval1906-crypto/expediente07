@@ -1,647 +1,98 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expediente 07 | Torre de enfriamiento</title>
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Expediente 07 · Torre de enfriamiento</title>
 <style>
-:root {
-  --bg: #081521;
-  --panel: #102635;
-  --panel2: #163647;
-  --line: #2a4c5d;
-  --cyan: #48e1d0;
-  --gold: #ffbd67;
-  --text: #eff8fb;
-  --muted: #a8bfca;
-  --green: #73e2a2;
-  --red: #ff8585;
-}
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: radial-gradient(ellipse at 80% 0%, #17445a 0, transparent 35%), var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-}
-
-header {
-  padding: 18px clamp(16px, 4vw, 40px);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.brand {
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  font-weight: 900;
-  color: var(--cyan);
-}
-
-header strong { font-size: 1rem; }
-
-main {
-  max-width: 950px;
-  margin: auto;
-  padding: 28px 18px 55px;
-}
-
-.eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  font-weight: 900;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-h1 {
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  line-height: 1.08;
-  margin: 12px 0;
-}
-
-h1 span { color: var(--cyan); }
-
-h2 { line-height: 1.25; }
-
-p { color: var(--muted); }
-
-.panel {
-  background: rgba(16, 38, 53, 0.96);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: clamp(18px, 4vw, 30px);
-  margin-top: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-@media(max-width:650px) {
-  .grid { grid-template-columns: 1fr; }
-}
-
-label {
-  display: block;
-  margin: 14px 0 7px;
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 9px;
-  border: 1px solid var(--line);
-  background: #081521;
-  color: white;
-  font-size: 1rem;
-}
-
-button {
-  border: 0;
-  border-radius: 9px;
-  padding: 13px 19px;
-  font-size: 0.95rem;
-  font-weight: bold;
-  cursor: pointer;
-  background: var(--cyan);
-  color: #062029;
-  margin: 5px 5px 5px 0;
-}
-
-button:hover { filter: brightness(1.08); }
-
-button.secondary {
-  color: var(--text);
-  background: var(--panel2);
-  border: 1px solid var(--line);
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.hidden { display: none !important; }
-
-.progress {
-  height: 9px;
-  border-radius: 99px;
-  overflow: hidden;
-  background: #203c4b;
-  margin: 14px 0;
-}
-
-.progress div {
-  height: 100%;
-  width: 0;
-  background: var(--cyan);
-  transition: width 0.3s;
-}
-
-.tag {
-  display: inline-block;
-  padding: 5px 10px;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  color: var(--cyan);
-  font-size: 0.8rem;
-  margin-right: 5px;
-}
-
-.question {
-  border: 1px solid var(--line);
-  background: #0b1d29;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 15px 0;
-}
-
-.question h3 { margin-top: 0; }
-
-.option {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  cursor: pointer;
-}
-
-.option:hover { background: var(--panel2); }
-
-.option input {
-  width: auto;
-  margin-top: 5px;
-  accent-color: var(--cyan);
-}
-
-.feedback {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-}
-
-.correct { color: var(--green); }
-.incorrect { color: var(--red); }
-
-.score {
-  font-size: 3.5rem;
-  color: var(--cyan);
-  font-weight: 900;
-}
-
-.small { font-size: 0.85rem; }
-
-footer {
-  border-top: 1px solid var(--line);
-  text-align: center;
-  padding: 20px;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
+:root{--bg:#081521;--panel:#102635;--panel2:#163647;--line:#2a4c5d;--cyan:#48e1d0;--gold:#ffbd67;--text:#eff8fb;--muted:#a8bfca;--red:#ff7777;--green:#8df0a7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#17445a 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{padding:16px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:.75rem;letter-spacing:.14em;font-weight:900;color:var(--cyan)}.status{border:1px solid #35796e;color:var(--green);border-radius:999px;padding:7px 10px;font-size:.75rem}
+main{max-width:1150px;margin:auto;padding:26px 18px 50px}.eyebrow{font-size:.75rem;letter-spacing:.14em;font-weight:900;color:var(--gold);text-transform:uppercase}h1{font-size:clamp(2.25rem,6vw,4.4rem);line-height:.98;letter-spacing:-.045em;margin:12px 0 16px}h1 span{color:var(--cyan)}h2{margin-top:0}p{line-height:1.55;color:var(--muted)}.panel{background:linear-gradient(145deg,#102b3b,#0b1d29);border:1px solid var(--line);border-radius:17px;padding:clamp(16px,3vw,26px);box-shadow:0 16px 42px #0002}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:18px 0}.stat{background:#091d29;border:1px solid var(--line);border-radius:12px;padding:14px}.stat strong{display:block;font-size:1.55rem;color:var(--cyan)}.stat small{color:var(--muted)}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tag{display:inline-block;border-radius:7px;padding:6px 10px;background:#183b4a;color:var(--cyan);font-weight:900;font-size:.75rem}button,input{font:inherit}button{border:0;border-radius:10px;padding:11px 15px;font-weight:850;background:var(--cyan);color:#05212a;cursor:pointer}button:hover{filter:brightness(1.07)}button:disabled{opacity:.4;cursor:not-allowed}.secondary{background:#1b3a4b;border:1px solid #36596a;color:var(--text)}.gold{background:var(--gold);color:#2b1b07}input,select,textarea{width:100%;margin:6px 0 13px;padding:11px;border-radius:9px;background:#071923;border:1px solid #3b5968;color:var(--text)}label{font-size:.85rem;color:var(--muted);font-weight:750}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.hidden{display:none!important}.progress{height:8px;background:#1c3948;border-radius:99px;overflow:hidden;margin:15px 0 20px}.progress div{height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .3s}.casefile{background:#0a1b26;border:1px dashed #4b6a78;border-radius:12px;padding:15px;margin:14px 0}.casefile h3{margin:0 0 8px;color:var(--gold);font-size:.85rem;letter-spacing:.07em}.casefile p{margin:5px 0}.question{font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:750;line-height:1.35;margin:17px 0}.options{display:grid;gap:9px}.option{text-align:left;background:#112d3c;color:var(--text);border:1px solid #355566;border-radius:10px;padding:13px}.option.selected{border-color:var(--cyan);background:#12444c}.hint{padding:12px;margin-top:10px;border-radius:10px;background:#342a1a;border:1px solid #8a6733;color:#ffe4b8;line-height:1.5}.feedback{padding:13px;border-radius:10px;background:#102e36;border:1px solid #36766d;margin-top:13px;line-height:1.55}.muted{font-size:.83rem;color:var(--muted)}.leader{display:grid;grid-template-columns:45px 1fr auto;gap:10px;align-items:center;padding:12px;border-bottom:1px solid var(--line)}.rank{font-size:1.15rem;color:var(--gold);font-weight:900}.score{font-size:1.2rem;color:var(--cyan);font-weight:900}.two{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.notice{border-radius:10px;padding:11px;background:#342a1a;color:#ffe4b8;border:1px solid #8a6733}.ok{color:var(--green)}.bad{color:var(--red)}footer{text-align:center;color:#7593a0;font-size:.78rem;margin-top:26px}
+@media(max-width:760px){.split,.two{grid-template-columns:1fr}.panel{border-radius:13px}.leader{grid-template-columns:30px 1fr auto}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <div>
-    <div class="brand">UNIDAD DE INVESTIGACIÓN INDUSTRIAL</div>
-    <strong>EXPEDIENTE 07 · TORRE DE ENFRIAMIENTO</strong>
-  </div>
-  <span class="tag">MODO DE INVESTIGACIÓN</span>
-</header>
-
+<header><div><div class="brand">UNIDAD DE INVESTIGACIÓN INDUSTRIAL</div><div style="font-weight:850;margin-top:5px">EXPEDIENTE 07 · TORRE DE ENFRIAMIENTO</div></div><div class="status" id="connection">● SIN CONFIGURAR</div></header>
 <main>
+<section id="home">
+<div class="eyebrow">Caso multijugador · Investigación por brigadas</div>
+<h1>El misterio<br>de la <span>torre.</span></h1>
+<p>La planta CT-07 no alcanza la temperatura objetivo. Formen brigadas, analicen evidencias, calculen el desempeño térmico y propongan un diagnóstico respaldado por datos. Los puntos de cada brigada se comparten y la clasificación se actualiza en vivo.</p>
+<div class="grid"><div class="stat"><strong>4</strong><small>etapas de investigación</small></div><div class="stat"><strong>100 pts</strong><small>por acierto</small></div><div class="stat"><strong>−10 pts</strong><small>por respuesta incorrecta</small></div></div>
+<div class="split">
+<div class="panel"><h2>Entrar al expediente</h2><label for="team">Nombre de la brigada</label><input id="team" maxlength="32" placeholder="Ej. Brigada Termodinámica"><label for="room">Código de sala</label><input id="room" maxlength="8" placeholder="Lo entrega el docente" style="text-transform:uppercase"><label for="member">Nombre del participante</label><input id="member" maxlength="32" placeholder="Tu nombre"><div class="actions"><button id="joinBtn">Unirme a la brigada →</button></div><p class="muted">Necesitas una sala activa creada por el docente. Para una prueba rápida, abre el panel docente en otro dispositivo y crea una sala.</p></div>
+<div class="panel"><span class="tag">REPORTE INICIAL</span><div class="casefile"><h3>ALARMA CT-07</h3><p>Temperatura objetivo de salida: <b>30 °C</b></p><p>Temperatura real de salida: <b>34 °C</b></p><p>Bulbo húmedo actual: <b>28 °C</b></p><p>El aumento del bulbo húmedo hace más exigente el enfriamiento, pero no demuestra por sí solo una falla mecánica.</p></div><h3>Objetivo de la brigada</h3><p>Resolver los cálculos, evaluar evidencias e indicar qué debe inspeccionarse antes de confirmar la causa raíz.</p></div>
+</div>
+<div class="panel" style="margin-top:14px"><h2>Panel docente</h2><p class="muted">Crea una sala nueva y comparte su código. La clasificación de esa sala se actualizará automáticamente.</p><label for="teacherKey">Clave docente</label><input id="teacherKey" type="password" placeholder="Clave configurada en Firebase Functions"><div class="actions"><button class="gold" id="createBtn">Crear sala y comenzar</button><button class="secondary" id="teacherRefreshBtn">Ver clasificación de una sala</button></div><div id="teacherMsg" class="muted"></div></div>
+</section>
 
-  <!-- PORTADA -->
-  <section id="home">
-    <div class="eyebrow">Expediente técnico · Caso 007</div>
-    <h1>El misterio de la <span>torre de enfriamiento</span></h1>
+<section id="play" class="hidden">
+<div class="eyebrow" id="stageLabel">PRUEBA 1 DE 4</div><h1 style="font-size:clamp(2rem,5vw,3.3rem)" id="stageTitle">Analiza las evidencias</h1>
+<div class="grid"><div class="stat"><strong id="teamScore">0</strong><small>puntos de la brigada</small></div><div class="stat"><strong id="stageCount">1 / 4</strong><small>etapa</small></div><div class="stat"><strong id="roomLabel">—</strong><small>sala</small></div></div>
+<div class="progress"><div id="progressBar"></div></div>
+<div class="two"><div class="panel"><span class="tag" id="topic">EVIDENCIA</span><div class="casefile" id="evidence"></div><div class="question" id="question"></div><div id="answerArea"></div><div id="feedback" class="feedback hidden"></div><div class="actions"><button id="submitBtn" disabled>Enviar deducción</button><button class="secondary hidden" id="nextBtn">Siguiente evidencia →</button></div><p class="muted">El sistema registra una respuesta por brigada en cada etapa. Los puntos son compartidos por todos sus integrantes.</p></div>
+<div class="panel"><h2>Clasificación en vivo</h2><p class="muted">Se actualiza al recibir nuevos puntajes.</p><div id="leaderboard"></div><div class="casefile"><h3>INTEGRANTES CONECTADOS</h3><div id="members">Esperando participantes…</div></div></div></div>
+<div class="actions"><button class="secondary" id="leaveBtn">Volver al inicio</button></div>
+</section>
 
-    <p>
-      Una torre de enfriamiento presenta un comportamiento térmico
-      inesperado. Tu brigada deberá analizar los datos, resolver
-      problemas de transferencia de calor y encontrar una explicación
-      técnica para el incidente.
-    </p>
+<section id="teacherView" class="hidden">
+<div class="eyebrow">Panel de control docente</div><h1 style="font-size:clamp(2.2rem,5vw,3.5rem)">Estado del <span>expediente.</span></h1>
+<div class="panel"><div class="grid"><div class="stat"><strong id="teacherRoom">—</strong><small>código de sala</small></div><div class="stat"><strong id="teacherTeams">0</strong><small>brigadas</small></div><div class="stat"><strong id="teacherMembers">0</strong><small>participantes</small></div></div><h2>Clasificación</h2><div id="teacherBoard"></div><div class="actions"><button id="startGameBtn">Iniciar / habilitar respuestas</button><button id="advanceBtn" class="secondary">Siguiente etapa →</button><button class="gold" id="closeRoomBtn">Cerrar evaluación</button><button class="secondary" id="backHomeBtn">Inicio</button></div><p class="muted" id="teacherStatus"></p></div>
+</section>
+<section id="finish" class="hidden">
+<div class="eyebrow">Investigación finalizada</div><h1>Expediente <span>resuelto.</span></h1><div class="panel"><h2 id="finishTitle">Resultado de la brigada</h2><div class="grid"><div class="stat"><strong id="finishScore">0</strong><small>puntos finales</small></div><div class="stat"><strong id="finishCorrect">0/4</strong><small>etapas correctas</small></div><div class="stat"><strong id="finishRank">—</strong><small>posición final</small></div></div><div class="casefile"><h3>CONCLUSIÓN TÉCNICA</h3><p>El rango actual es 40 − 34 = 6 °C. El acercamiento actual es 34 − 28 = 6 °C. El aumento del bulbo húmedo limita la temperatura mínima alcanzable. Antes de confirmar una causa raíz, deben verificarse ventilador y flujo de aire, caudales, distribución de agua, ensuciamiento del relleno y capacidad de diseño.</p></div><h2>Clasificación final</h2><div id="finishBoard"></div><button id="finishHomeBtn">Volver al inicio</button></div></section>
+</main><footer>EXPEDIENTE 07 · Actividad educativa de transferencia de calor y masa</footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 
-    <div class="grid">
-      <div class="panel">
-        <div class="eyebrow">Misión</div>
-        <h2>Investigar el incidente</h2>
-        <p>Resuelve cuatro etapas para reconstruir lo ocurrido en la torre.</p>
-      </div>
-
-      <div class="panel">
-        <div class="eyebrow">Sistema de evaluación</div>
-        <h2>100 puntos posibles</h2>
-        <p>Cada respuesta correcta suma puntos. Al final recibirás el resultado de tu brigada.</p>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Identificación de la brigada</h2>
-      <label for="teamName">Nombre de la brigada</label>
-      <input id="teamName" maxlength="60" placeholder="Ej. Brigada Alfa">
-
-      <p class="small">
-        El nombre y la puntuación se conservarán durante esta sesión del navegador.
-        No se publicarán en un ranking compartido.
-      </p>
-
-      <button onclick="startGame()">Iniciar investigación →</button>
-    </div>
-  </section>
-
-  <!-- JUEGO -->
-  <section id="game" class="hidden">
-    <div class="eyebrow">Investigación en curso</div>
-    <h1 id="stageTitle">Etapa 1</h1>
-
-    <p>
-      Brigada: <strong id="currentTeam"></strong>
-      <span class="tag" id="stageCounter"></span>
-    </p>
-
-    <div class="progress">
-      <div id="progressBar"></div>
-    </div>
-
-    <p id="stageIntro"></p>
-
-    <div id="questions"></div>
-
-    <button id="checkButton" onclick="checkStage()">Evaluar respuestas</button>
-    <button id="nextButton" class="hidden" onclick="nextStage()">Continuar →</button>
-
-    <p id="stageFeedback" aria-live="polite"></p>
-  </section>
-
-  <!-- RESULTADO -->
-  <section id="results" class="hidden">
-    <div class="eyebrow">Expediente concluido</div>
-    <h1>Informe final de la brigada</h1>
-
-    <div class="panel">
-      <p>Brigada investigadora</p>
-      <h2 id="resultTeam"></h2>
-
-      <div class="score"><span id="finalScore">0</span>/100</div>
-      <div class="progress">
-        <div id="finalBar"></div>
-      </div>
-
-      <h2 id="resultLevel"></h2>
-      <p id="resultMessage"></p>
-
-      <h2>Resumen de la investigación</h2>
-      <p id="resultSummary"></p>
-
-      <div id="stageScores"></div>
-
-      <button onclick="window.print()">Imprimir informe / Guardar PDF</button>
-      <button class="secondary" onclick="restartGame()">Volver al inicio</button>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  EXPEDIENTE 07 · Investigación académica de transferencia de calor
-</footer>
-
-<script>
-const stages = [
-  {
-    title: "Etapa 1 · Apertura del expediente",
-    intro: "Analiza los fundamentos de una torre de enfriamiento antes de examinar las evidencias.",
-    questions: [
-      {
-        text: "¿Cuál es la función principal de una torre de enfriamiento?",
-        options: [
-          "Calentar el agua hasta su punto de ebullición.",
-          "Rechazar calor del agua hacia el ambiente.",
-          "Aumentar la presión del agua.",
-          "Separar sólidos disueltos mediante filtración."
-        ],
-        answer: 1,
-        explanation: "La torre disipa calor al ambiente, principalmente mediante la transferencia de calor y masa durante el contacto entre agua y aire."
-      },
-      {
-        text: "¿Qué mecanismo suele ser especialmente importante en una torre de enfriamiento evaporativa?",
-        options: [
-          "La conducción a través de una pared metálica exclusivamente.",
-          "La radiación como único mecanismo.",
-          "La evaporación de una fracción del agua.",
-          "La reacción química del agua con el aire."
-        ],
-        answer: 2,
-        explanation: "La evaporación de una pequeña fracción del agua extrae energía térmica del agua restante."
-      }
-    ]
-  },
-  {
-    title: "Etapa 2 · Análisis de evidencias",
-    intro: "Examina las temperaturas registradas y determina cómo evaluar el desempeño térmico.",
-    questions: [
-      {
-        text: "El agua caliente entra a 40 °C y sale a 30 °C. ¿Cuál es su disminución de temperatura?",
-        options: [
-          "10 °C",
-          "30 °C",
-          "70 °C",
-          "-10 °C"
-        ],
-        answer: 0,
-        explanation: "La disminución es Tentrada − Tsalida = 40 − 30 = 10 °C."
-      },
-      {
-        text: "Si el caudal másico de agua es conocido, ¿qué expresión permite estimar el calor cedido por el agua?",
-        options: [
-          "Q = ṁ Cp (Tsalida − Tentrada), sin considerar el signo.",
-          "Q = ṁ Cp (Tentrada − Tsalida), como magnitud del calor cedido.",
-          "Q = ṁ / Cp.",
-          "Q = Cp / (Tentrada − Tsalida)."
-        ],
-        answer: 1,
-        explanation: "La magnitud del calor sensible cedido se estima con Q̇ = ṁ Cp (Tentrada − Tsalida), si Cp puede considerarse constante."
-      }
-    ]
-  },
-  {
-    title: "Etapa 3 · Diagnóstico operacional",
-    intro: "Identifica cómo las condiciones de operación pueden afectar el rendimiento de la torre.",
-    questions: [
-      {
-        text: "¿Qué puede ocurrir si aumenta el flujo de aire manteniendo condiciones comparables?",
-        options: [
-          "La transferencia de calor necesariamente desaparece.",
-          "Puede aumentar la transferencia de calor y masa, según las condiciones de operación.",
-          "La temperatura del agua deja de importar.",
-          "El agua deja de evaporarse."
-        ],
-        answer: 1,
-        explanation: "Un mayor flujo de aire puede favorecer el contacto y la transferencia, aunque el resultado depende de la torre y de sus condiciones de operación."
-      },
-      {
-        text: "¿Cuál de las siguientes situaciones puede reducir el desempeño de una torre?",
-        options: [
-          "Distribución deficiente del agua sobre el relleno.",
-          "Contacto adecuado entre agua y aire.",
-          "Mantenimiento apropiado.",
-          "Condiciones ambientales favorables."
-        ],
-        answer: 0,
-        explanation: "Una mala distribución del agua puede reducir el área de contacto efectiva entre las fases."
-      }
-    ]
-  },
-  {
-    title: "Etapa 4 · Resolución del caso",
-    intro: "Resuelve las últimas preguntas y formula el cierre técnico del expediente.",
-    questions: [
-      {
-        text: "¿Qué representa la diferencia entre la temperatura del agua caliente de entrada y la temperatura del agua fría de salida?",
-        options: [
-          "La presión atmosférica.",
-          "El acercamiento térmico o approach de la torre.",
-          "El caudal volumétrico del aire.",
-          "La pérdida de masa del relleno."
-        ],
-        answer: 1,
-        explanation: "El approach se define como la temperatura del agua fría de salida menos la temperatura de bulbo húmedo del aire de entrada. La diferencia descrita en la pregunta es otra magnitud; por tanto, ninguna opción sería correcta si se interpreta literalmente."
-      },
-      {
-        text: "¿Qué dato ambiental es especialmente útil para evaluar el límite de enfriamiento evaporativo?",
-        options: [
-          "La temperatura de bulbo húmedo del aire de entrada.",
-          "El color exterior de la torre.",
-          "La longitud del cable de alimentación.",
-          "La masa del soporte de concreto."
-        ],
-        answer: 0,
-        explanation: "La temperatura de bulbo húmedo del aire de entrada es una referencia importante para evaluar el desempeño de una torre evaporativa."
-      }
-    ]
-  }
+/* 1) Paste your Firebase web config here (Firebase Console > Project settings > Your apps). */
+const firebaseConfig = {
+  apiKey: "AIzaSyDF3Unpiz9831ameS_om1D1frJk1GXC0WA",
+  authDomain: "expediente07-torre.firebaseapp.com",
+  databaseURL: "https://expediente07-torre-default-rtdb.firebaseio.com",
+  projectId: "expediente07-torre",
+  storageBucket: "expediente07-torre.firebasestorage.app",
+  messagingSenderId: "1074620318236",
+  appId: "1:1074620318236:web:c0b04eb1ae21d63f1c15d9",
+  measurementId: "G-JY4RRMPXZJ"
+};
+const CONFIGURED = !firebaseConfig.apiKey.startsWith("PASTE_") && !firebaseConfig.projectId.startsWith("PASTE_");
+const $ = id => document.getElementById(id);
+const cases = [
+ {title:"1. Confirm the symptom",topic:"EVIDENCE A · OPERATING LOG",evidence:"Target outlet temperature: <b>30 °C</b><br>Actual outlet temperature: <b>34 °C</b><br>The process reports reduced cooling capacity.",q:"Which conclusion is best supported by this evidence?",type:"choice",opts:["The tower is cooling more than required","Outlet water is 4 °C above target; investigate performance","The tower is operating perfectly"],correct:1,why:"34 − 30 = 4 °C above the target. This confirms a performance gap, not its root cause.",hint:"Compare actual outlet temperature with the target."},
+ {title:"2. Calculate the range",topic:"EVIDENCE B · PROCESS DATA",evidence:"Hot water enters at <b>40 °C</b> and currently leaves at <b>34 °C</b>.<br><br><b>Range = hot-water inlet − cold-water outlet</b>",q:"Calculate the current cooling range.",type:"choice",opts:["6 °C","10 °C","34 °C"],correct:0,why:"Range = 40 − 34 = 6 °C. If the outlet reached 30 °C, the range would be 10 °C.",hint:"Subtract the outlet temperature from the inlet temperature."},
+ {title:"3. Interpret wet-bulb temperature",topic:"EVIDENCE C · AMBIENT CONDITIONS",evidence:"Current outlet water: <b>34 °C</b><br>Current wet-bulb temperature: <b>28 °C</b><br><b>Approach = outlet water − wet bulb</b>",q:"Enter the current approach in °C.",type:"number",correct:6,why:"Approach = 34 − 28 = 6 °C. A higher wet-bulb temperature makes low outlet-water temperatures harder to achieve.",hint:"Use 34 − 28. Enter the number only."},
+ {title:"4. Make the technical decision",topic:"EVIDENCE D · MAINTENANCE REPORT",evidence:"The target is not met and wet-bulb temperature has increased. No single mechanical fault has been confirmed. Airflow, water flow, distribution and fill condition have not yet been verified.",q:"Which action is the most defensible?",type:"choice",opts:["Replace the whole tower immediately","Reduce airflow to stop evaporation","Inspect fan/airflow, water flow, distribution and fill before confirming root cause"],correct:2,why:"The evidence indicates poor performance and tougher ambient conditions, but not one proven failure. Inspect and measure before declaring a root cause.",hint:"Choose an action that tests the main heat- and mass-transfer variables."}
 ];
-
-let team = "";
-let stageIndex = 0;
-let stageResults = [];
-let totalScore = 0;
-let answered = false;
-
-function startGame() {
-  const input = document.getElementById("teamName").value.trim();
-
-  if (!input) {
-    alert("Escribe el nombre de tu brigada antes de iniciar.");
-    return;
-  }
-
-  team = input;
-  stageIndex = 0;
-  stageResults = [];
-  totalScore = 0;
-
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("results").classList.add("hidden");
-  document.getElementById("game").classList.remove("hidden");
-  document.getElementById("currentTeam").textContent = team;
-
-  renderStage();
+let app,auth,db,functions,uid="",teamId="",teamName="",memberName="",roomCode="",isTeacher=false,stage=0,answeredStages=new Set(),currentUnsubs=[],myCorrect=0,roomState={};
+function show(id){["home","play","teacherView","finish"].forEach(s=>$(s).classList.toggle("hidden",s!==id))}
+function setStatus(s){$("connection").textContent=s}
+function cleanup(){currentUnsubs.forEach(u=>u());currentUnsubs=[]}
+function ready(){if(!CONFIGURED)throw new Error("Firebase aún no está configurado. Sigue SETUP.md y pega la configuración web en index.html.");if(!auth.currentUser)throw new Error("No hay sesión autenticada. Recarga la página.");}
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderBoard(target,teams){const entries=Object.entries(teams||{}).map(([id,t])=>({id,name:t.name||"Brigada",score:t.score||0,done:t.done||0,members:t.members?Object.keys(t.members).length:0})).sort((a,b)=>b.score-a.score||b.done-a.done);$(target).innerHTML=entries.length?entries.map((t,i)=>`<div class="leader"><div class="rank">${i+1}</div><div><b>${safe(t.name)}</b><div class="muted">${t.done}/4 etapas · ${t.members} integrantes</div></div><div class="score">${t.score} pts</div></div>`).join(""):"<p class='muted'>Aún no hay brigadas.</p>";return entries}
+async function call(name,data){ready();return await httpsCallable(functions,name)(data)}
+async function join(){
+ try{ready();teamName=$("team").value.trim();memberName=$("member").value.trim();roomCode=$("room").value.trim().toUpperCase();if(!teamName||!memberName||!roomCode)throw new Error("Escribe nombre de brigada, código de sala y tu nombre.");const res=await call("joinRoom",{roomCode,teamName,memberName});teamId=res.data.teamId;roomCode=res.data.roomCode;stage=0;answeredStages=new Set(res.data.answeredStages||[]);listenRoom();show("play");renderStage();setStatus("● CONECTADO · "+roomCode)}catch(e){alert(e.message||String(e))}
 }
-
-function renderStage() {
-  const stage = stages[stageIndex];
-  answered = false;
-
-  document.getElementById("stageTitle").textContent = stage.title;
-  document.getElementById("stageCounter").textContent =
-    "Etapa " + (stageIndex + 1) + " de " + stages.length;
-  document.getElementById("stageIntro").textContent = stage.intro;
-  document.getElementById("progressBar").style.width =
-    (stageIndex / stages.length * 100) + "%";
-  document.getElementById("stageFeedback").textContent = "";
-  document.getElementById("checkButton").classList.remove("hidden");
-  document.getElementById("nextButton").classList.add("hidden");
-
-  const container = document.getElementById("questions");
-  container.innerHTML = "";
-
-  stage.questions.forEach((q, qi) => {
-    const card = document.createElement("div");
-    card.className = "question";
-
-    const heading = document.createElement("h3");
-    heading.textContent = (qi + 1) + ". " + q.text;
-    card.appendChild(heading);
-
-    q.options.forEach((option, oi) => {
-      const label = document.createElement("label");
-      label.className = "option";
-
-      const radio = document.createElement("input");
-      radio.type = "radio";
-      radio.name = "q" + qi;
-      radio.value = oi;
-
-      const text = document.createElement("span");
-      text.textContent = option;
-
-      label.appendChild(radio);
-      label.appendChild(text);
-      card.appendChild(label);
-    });
-
-    const feedback = document.createElement("div");
-    feedback.id = "feedback" + qi;
-    feedback.className = "feedback hidden";
-    card.appendChild(feedback);
-
-    container.appendChild(card);
-  });
-}
-
-function checkStage() {
-  if (answered) return;
-
-  const stage = stages[stageIndex];
-  let correct = 0;
-  let missing = false;
-
-  stage.questions.forEach((q, qi) => {
-    const selected = document.querySelector('input[name="q' + qi + '"]:checked');
-    if (!selected) missing = true;
-  });
-
-  if (missing) {
-    alert("Responde todas las preguntas antes de evaluar la etapa.");
-    return;
-  }
-
-  stage.questions.forEach((q, qi) => {
-    const selected = document.querySelector('input[name="q' + qi + '"]:checked');
-    const value = Number(selected.value);
-    const feedback = document.getElementById("feedback" + qi);
-
-    const isCorrect = value === q.answer;
-    if (isCorrect) correct++;
-
-    feedback.classList.remove("hidden");
-    feedback.innerHTML =
-      '<strong class="' + (isCorrect ? "correct" : "incorrect") + '">' +
-      (isCorrect ? "Correcto." : "Respuesta incorrecta.") +
-      '</strong> ' + q.explanation;
-
-    document.querySelectorAll('input[name="q' + qi + '"]').forEach(input => {
-      input.disabled = true;
-    });
-  });
-
-  const points = Math.round(correct / stage.questions.length * 25);
-  totalScore += points;
-  stageResults.push({
-    title: stage.title,
-    correct: correct,
-    total: stage.questions.length,
-    points: points
-  });
-
-  answered = true;
-
-  document.getElementById("stageFeedback").textContent =
-    "Resultado de la etapa: " + correct + " de " +
-    stage.questions.length + " respuestas correctas. Puntos obtenidos: " +
-    points + " de 25.";
-
-  document.getElementById("checkButton").classList.add("hidden");
-  document.getElementById("nextButton").classList.remove("hidden");
-
-  if (stageIndex === stages.length - 1) {
-    document.getElementById("nextButton").textContent = "Ver informe final →";
-  } else {
-    document.getElementById("nextButton").textContent = "Siguiente etapa →";
-  }
-}
-
-function nextStage() {
-  if (!answered) return;
-
-  if (stageIndex < stages.length - 1) {
-    stageIndex++;
-    renderStage();
-  } else {
-    showResults();
-  }
-}
-
-function showResults() {
-  document.getElementById("game").classList.add("hidden");
-  document.getElementById("results").classList.remove("hidden");
-
-  document.getElementById("resultTeam").textContent = team;
-  document.getElementById("finalScore").textContent = totalScore;
-  document.getElementById("finalBar").style.width = totalScore + "%";
-
-  let level, message;
-
-  if (totalScore >= 88) {
-    level = "Investigación sobresaliente";
-    message = "La brigada demostró un sólido dominio de los conceptos evaluados.";
-  } else if (totalScore >= 63) {
-    level = "Investigación satisfactoria";
-    message = "La brigada resolvió buena parte del caso. Conviene repasar las preguntas falladas.";
-  } else {
-    level = "Expediente por reforzar";
-    message = "La brigada debe revisar los fundamentos y repetir la investigación para fortalecer su comprensión.";
-  }
-
-  document.getElementById("resultLevel").textContent = level;
-  document.getElementById("resultMessage").textContent = message;
-
-  document.getElementById("resultSummary").textContent =
-    "La brigada completó las cuatro etapas de investigación y obtuvo " +
-    totalScore + " puntos de 100 posibles.";
-
-  const summary = document.getElementById("stageScores");
-  summary.innerHTML = "<h3>Puntuación por etapa</h3>";
-
-  stageResults.forEach(result => {
-    const p = document.createElement("p");
-    p.textContent = result.title + ": " + result.points +
-      "/25 puntos (" + result.correct + "/" + result.total +
-      " respuestas correctas).";
-    summary.appendChild(p);
-  });
-}
-
-function restartGame() {
-  document.getElementById("results").classList.add("hidden");
-  document.getElementById("game").classList.add("hidden");
-  document.getElementById("home").classList.remove("hidden");
-  document.getElementById("teamName").value = "";
-  document.getElementById("nextButton").textContent = "Continuar →";
-}
+function listenRoom(){cleanup();const roomRef=ref(db,`rooms/${roomCode}`);currentUnsubs.push(onValue(roomRef,snap=>{roomState=snap.val()||{};$("teamScore").textContent=roomState.teams?.[teamId]?.score||0;$("roomLabel").textContent=roomCode;const entries=renderBoard("leaderboard",roomState.teams);$("members").innerHTML=Object.values(roomState.teams||{}).flatMap(t=>Object.values(t.members||{}).map(m=>safe(m.name))).join(", ")||"Esperando participantes…";if(roomState.status==="closed"&&!isTeacher)showFinish(entries);if(roomState.status==="active"&&roomState.currentStage!==undefined&&roomState.currentStage!==stage){stage=roomState.currentStage;renderStage()}},e=>setStatus("● ERROR DE CONEXIÓN")))}
+function renderStage(){if(stage>=cases.length){showFinish();return}const c=cases[stage];$("stageLabel").textContent=`EXPEDIENTE 07 · STAGE ${stage+1} OF ${cases.length}`;$("stageTitle").textContent=c.title;$("topic").textContent=c.topic;$("evidence").innerHTML=c.evidence;$("question").textContent=c.q;$("stageCount").textContent=`${stage+1} / ${cases.length}`;$("progressBar").style.width=`${stage/cases.length*100}%`;$("answerArea").innerHTML="";$("feedback").classList.add("hidden");$("submitBtn").disabled=true;
+ if(answeredStages.has(stage)){$("answerArea").innerHTML="<div class='notice'>Your brigade has already submitted this stage. Wait for the teacher to advance the case.</div>";return}
+ if(c.type==="choice"){const wrap=document.createElement("div");wrap.className="options";c.opts.forEach((o,i)=>{const b=document.createElement("button");b.className="option";b.textContent=o;b.onclick=()=>{wrap.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");$("submitBtn").disabled=false;$("submitBtn").dataset.answer=String(i)};wrap.appendChild(b)});$("answerArea").appendChild(wrap)}
+ else{const label=document.createElement("label");label.textContent="Approach (°C)";const input=document.createElement("input");input.type="number";input.step="0.1";input.placeholder="Enter your calculated value";input.id="numericAnswer";input.oninput=()=>{$("submitBtn").disabled=input.value.trim()===""};$("answerArea").append(label,input)}
+ $("submitBtn").classList.remove("hidden");$("submitBtn").textContent="Submit deduction";$("nextBtn").classList.add("hidden")}
+async function submitAnswer(){try{const c=cases[stage];let answer=c.type==="number"?Number($("numericAnswer").value):Number($("submitBtn").dataset.answer);const res=await call("submitAnswer",{roomCode,teamId,stage,answer});answeredStages.add(stage);$("answerArea").innerHTML="<div class='notice'>Answer submitted. Your brigade score is updated for everyone in the room.</div>";$("submitBtn").classList.add("hidden");$("feedback").classList.remove("hidden");$("feedback").innerHTML=`<b>${res.data.correct?"Correct deduction":"Deduction recorded"}</b><br>${safe(res.data.explanation)}`;if(res.data.correct)myCorrect++;}catch(e){alert(e.message||String(e))}}
+async function createRoom(){try{ready();const key=$("teacherKey").value;const res=await call("createRoom",{teacherKey});roomCode=res.data.roomCode;isTeacher=true;listenTeacher();show("teacherView");setStatus("● DOCENTE · "+roomCode);$("teacherMsg").textContent="Comparte el código "+roomCode+" con las brigadas."}catch(e){alert(e.message||String(e))}}
+function listenTeacher(){cleanup();currentUnsubs.push(onValue(ref(db,`rooms/${roomCode}`),snap=>{roomState=snap.val()||{};stage=Number(roomState.currentStage)||0;$("teacherRoom").textContent=roomCode;$("teacherTeams").textContent=Object.keys(roomState.teams||{}).length;$("teacherMembers").textContent=Object.values(roomState.teams||{}).reduce((n,t)=>n+Object.keys(t.members||{}).length,0);const entries=renderBoard("teacherBoard",roomState.teams);$("teacherStatus").textContent="Estado: "+(roomState.status||"waiting")+" · Etapa actual: "+((roomState.currentStage||0)+1);},e=>alert(e.message)))}
+async function startGame(){try{await call("setRoomStatus",{roomCode,status:"active",currentStage:0,teacherKey:$("teacherKey").value});stage=0;show("teacherView")}catch(e){alert(e.message||String(e))}}
+async function advanceStage(){try{const next=Math.min(cases.length-1,stage+1);await call("setRoomStatus",{roomCode,status:"active",currentStage:next,teacherKey:$("teacherKey").value});stage=next;}catch(e){alert(e.message||String(e))}}
+async function closeRoom(){try{await call("setRoomStatus",{roomCode,status:"closed",currentStage:stage,teacherKey:$("teacherKey").value});}catch(e){alert(e.message||String(e))}}
+function showFinish(entries){show("finish");const team=roomState.teams?.[teamId]||{};$("finishTitle").textContent=team.name||teamName;$("finishScore").textContent=team.score||0;$("finishCorrect").textContent=`${team.correct||0}/4`;const sorted=entries||renderBoard("finishBoard",roomState.teams);$("finishRank").textContent=(sorted.findIndex(x=>x.id===teamId)+1)||"—";renderBoard("finishBoard",roomState.teams)}
+async function refreshTeacher(){try{ready();roomCode=$("room").value.trim().toUpperCase();if(!roomCode)throw new Error("Escribe el código de sala en el campo de código.");isTeacher=true;listenTeacher();show("teacherView");setStatus("● DOCENTE · "+roomCode)}catch(e){alert(e.message||String(e))}}
+$("joinBtn").onclick=join;$("createBtn").onclick=createRoom;$("submitBtn").onclick=submitAnswer;$("startGameBtn").onclick=startGame;$("advanceBtn").onclick=advanceStage;$("closeRoomBtn").onclick=closeRoom;$("teacherRefreshBtn").onclick=refreshTeacher;$("backHomeBtn").onclick=()=>{cleanup();show("home")};$("leaveBtn").onclick=()=>{cleanup();show("home")};$("finishHomeBtn").onclick=()=>{cleanup();show("home")};
+try{if(CONFIGURED){app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);functions=getFunctions(app);await signInAnonymously(auth);uid=auth.currentUser.uid;setStatus("● LISTO PARA CONECTAR")}else{setStatus("● CONFIGURACIÓN PENDIENTE");$("teacherMsg").textContent="Abre SETUP.md para conectar Firebase y publicar la aplicación."}}catch(e){setStatus("● ERROR DE CONFIGURACIÓN");console.error(e)}
 </script>
-
-</body>
-</html>
+</body></html>
