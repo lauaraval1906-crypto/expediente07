@@ -4,253 +4,856 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expediente 07 | Torre de enfriamiento</title>
+
 <style>
-:root{--bg:#081521;--panel:#102635;--panel2:#163647;--line:#2a4c5d;--cyan:#48e1d0;--gold:#ffbd67;--text:#eff8fb;--muted:#a8bfca;--green:#73e2a2;--red:#ff8585}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#17445a 0,transparent 35%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-header{padding:18px clamp(16px,4vw,40px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.brand{font-size:.78rem;letter-spacing:.14em;font-weight:900;color:var(--cyan)}header strong{font-size:1rem}
-main{max-width:1000px;margin:auto;padding:28px 18px 55px}.eyebrow{font-size:.75rem;letter-spacing:.14em;font-weight:900;color:var(--gold);text-transform:uppercase}
-h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.1;margin:12px 0}h1 span{color:var(--cyan)}h2{line-height:1.25}p{color:var(--muted)}
-.panel{background:rgba(16,38,53,.96);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,4vw,30px);margin-top:20px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}@media(max-width:650px){.grid{grid-template-columns:1fr}}
-label{display:block;margin:14px 0 7px;font-weight:bold}input[type=text]{width:100%;padding:14px;border-radius:9px;border:1px solid var(--line);background:#081521;color:white;font-size:1rem}
-button{border:0;border-radius:9px;padding:13px 19px;font-size:.95rem;font-weight:bold;cursor:pointer;background:var(--cyan);color:#062029;margin:5px 5px 5px 0}button:hover{filter:brightness(1.08)}button.secondary{color:var(--text);background:var(--panel2);border:1px solid var(--line)}button:disabled{opacity:.4;cursor:not-allowed}
-.hidden{display:none!important}.progress{height:9px;border-radius:99px;overflow:hidden;background:#203c4b;margin:14px 0}.progress div{height:100%;width:0;background:var(--cyan);transition:width .3s}
-.tag{display:inline-block;padding:5px 10px;border:1px solid var(--line);border-radius:99px;color:var(--cyan);font-size:.8rem;margin-right:5px}
-.small{font-size:.85rem}.clue{border:1px solid #6c5938;background:#201e19;border-radius:12px;padding:16px;margin:12px 0}.clue strong{color:var(--gold)}
-.question{border:1px solid var(--line);background:#0b1d29;border-radius:12px;padding:18px;margin:15px 0}
-.option{display:flex;align-items:flex-start;gap:10px;margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:9px;cursor:pointer}.option:hover{background:var(--panel2)}.option input{margin-top:6px;accent-color:var(--cyan)}
-.feedback{margin-top:14px;padding:12px;border-radius:8px;background:#102635}.correct{color:var(--green)}.incorrect{color:var(--red)}
-.score{font-size:3.5rem;color:var(--cyan);font-weight:900}.notice{border-left:3px solid var(--gold);padding:8px 14px;background:#172b35;color:var(--muted)}
-footer{border-top:1px solid var(--line);text-align:center;padding:20px;color:var(--muted);font-size:.8rem}
-@media print{body{background:white;color:#111}header,button,#home{display:none!important}main{max-width:none;padding:0}.panel,.question{background:white;border:1px solid #aaa;color:#111}p{color:#333}.score{color:#111}}
-</style>
-</head>
+:root {
+  --bg: #081521;
+  --panel: #102635;
+  --panel2: #163647;
+  --line: #2a4c5d;
+  --cyan: #48e1d0;
+  --gold: #ffbd67;
+  --text: #eff8fb;
+  --muted: #a8bfca;
+  --green: #73e2a2;
+  --red: #ff8585;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 80% 0%, #17445a 0, transparent 35%), var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  padding: 18px clamp(16px, 4vw, 40px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: .78rem;
+  letter-spacing: .14em;
+  font-weight: 900;
+  color: var(--cyan);
+}
+
+header strong {
+  font-size: 1rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 28px 18px 55px;
+}
+
+.eyebrow {
+  font-size: .75rem;
+  letter-spacing: .14em;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.1;
+  margin: 12px 0;
+}
+
+h1 span {
+  color: var(--cyan);
+}
+
+h2 {
+  line-height: 1.25;
+}
+
+p {
+  color: var(--muted);
+}
+
+.panel {
+  background: rgba(16, 38, 53, .96);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(18px, 4vw, 30px);
+  margin-top: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 650px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+label {
+  display: block;
+  margin: 14px 0 7px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: #081521;
+  color: white;
+  font-size: 1rem;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 19px;
+  font-size: .95rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--cyan);
+  color: #062029;
+  margin: 5px 5px 5px 0;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button.secondary {
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--line);
+}
+
+button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.progress {
+  height: 9px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: #203c4b;
+  margin: 14px 0;
+}
+
+.progress div {
+  height: 100%;
+  width: 0;
+  background: var(--cyan);
+  transition: width .3s;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--cyan);
+  font-size: .8rem;
+  margin-right: 5px;
+}
+
+.small {
+  font-size: .85rem;
+}
+
+.clue {
+  border: 1px solid #6c5938;
+  background: #201e19;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+}
+
+.clue strong {
+  color: var(--gold);
+}
+
+.question {
+  border: 1px solid var(--line);
+  background: #0b1d29;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 15px 0;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: var(--panel2);
+}
+
+.option input {
+  margin-top: 6px;
+  accent-color: var(--cyan);
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #102635;
+}
+
+.correct {
+  color: var(--green);
+}
+
+.incorrect {
+  color: var(--red);
+}
+
+.score {
+  font-size: 3.5rem;
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.notice {
+  border-left: 3px solid var(--gold);
+  padding: 8px 14px;
+  background: #172b35;
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+@media print {
+  body {
+    background: white;
+    color: #111;
+  }
+
+  header, button, #home {
+    display: none !important;
+  }
+
+  main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .panel, .question {
+    background: white;
+    border: 1px solid #aaa;
+    color: #111;
+  }
+
+  p {
+    color: #333;
+  }
+
+  .score {
+    color: #111;
+  }
+}
+</style>}
+
+  </head>
 <body>
+
 <header>
-  <div><div class="brand">UNIDAD DE INVESTIGACIÓN INDUSTRIAL</div><strong>EXPEDIENTE 07 · TORRE DE ENFRIAMIENTO</strong></div>
+  <div>
+    <div class="brand">UNIDAD DE INVESTIGACIÓN INDUSTRIAL</div>
+    <strong>EXPEDIENTE 07 · TORRE DE ENFRIAMIENTO</strong>
+  </div>
   <span class="tag">MODO DE INVESTIGACIÓN</span>
 </header>
+
 <main>
+
 <section id="home">
   <div class="eyebrow">Expediente técnico · Caso CT-07</div>
+
   <h1>El misterio de la <span>torre de enfriamiento</span></h1>
-  <p>Una torre de enfriamiento no alcanza la temperatura objetivo. Tu brigada debe revisar las evidencias, resolver los cálculos y decidir qué debe inspeccionarse antes de confirmar la causa raíz.</p>
+
+  <p>
+    Una torre de enfriamiento no alcanza la temperatura objetivo.
+    Tu brigada debe revisar las evidencias, resolver los cálculos
+    y decidir qué debe inspeccionarse antes de confirmar la causa raíz.
+  </p>
+
   <div class="grid">
-    <div class="panel"><div class="eyebrow">Tu misión</div><h2>Investigar las evidencias</h2><p>Lee las pistas de cada etapa y responde las preguntas de una en una.</p></div>
-    <div class="panel"><div class="eyebrow">Evaluación</div><h2>100 puntos posibles</h2><p>Cuatro etapas. Cada etapa vale 25 puntos. Recibirás un informe al finalizar.</p></div>
+    <div class="panel">
+      <div class="eyebrow">Tu misión</div>
+      <h2>Investigar las evidencias</h2>
+      <p>Lee las pistas de cada etapa y responde las preguntas de una en una.</p>
+    </div>
+
+    <div class="panel">
+      <div class="eyebrow">Evaluación</div>
+      <h2>100 puntos posibles</h2>
+      <p>Cuatro etapas. Cada etapa vale 25 puntos. Recibirás un informe al finalizar.</p>
+    </div>
   </div>
+
   <div class="panel">
     <h2>Identificación de la brigada</h2>
+
     <label for="teamName">Nombre de la brigada</label>
-    <input id="teamName" type="text" maxlength="60" placeholder="Ej. Brigada Termodinámica">
-    <p class="small">No necesitas código de sala ni cuenta. El resultado se calcula en este dispositivo y no se comparte en un ranking en línea.</p>
+    <input id="teamName" type="text" maxlength="60"
+      placeholder="Ej. Brigada Termodinámica">
+
+    <p class="small">
+      No necesitas código de sala ni cuenta. El resultado se calcula
+      en este dispositivo y no se comparte en un ranking en línea.
+    </p>
+
     <button onclick="startGame()">Iniciar investigación →</button>
   </div>
 </section>
 
 <section id="game" class="hidden">
   <div class="eyebrow">Investigación en curso</div>
+
   <h1 id="stageTitle"></h1>
-  <p>Brigada: <strong id="currentTeam"></strong> <span class="tag" id="stageCounter"></span></p>
-  <div class="progress"><div id="progressBar"></div></div>
+
+  <p>
+    Brigada: <strong id="currentTeam"></strong>
+    <span class="tag" id="stageCounter"></span>
+  </p>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+
   <p id="stageIntro"></p>
+
   <div class="panel">
     <h2>📁 Pistas del expediente</h2>
     <p id="clueInstruction">Lee las evidencias antes de responder.</p>
+
     <div id="clues"></div>
-    <button id="showQuestionButton" onclick="showQuestion()">Ya revisé las pistas → Ver pregunta</button>
+
+    <button id="showQuestionButton" onclick="showQuestion()">
+      Ya revisé las pistas → Ver pregunta
+    </button>
   </div>
+
   <div id="questionPanel" class="panel hidden">
     <div class="eyebrow" id="questionNumber"></div>
+
     <h2 id="questionText"></h2>
+
     <div id="options"></div>
+
     <div id="answerFeedback" class="feedback hidden" aria-live="polite"></div>
-    <button id="answerButton" onclick="submitAnswer()">Confirmar respuesta</button>
-    <button id="nextButton" class="hidden" onclick="nextQuestion()">Siguiente →</button>
+
+    <button id="answerButton" onclick="submitAnswer()">
+      Confirmar respuesta
+    </button>
+
+    <button id="nextButton" class="hidden" onclick="nextQuestion()">
+      Siguiente →
+    </button>
   </div>
 </section>
 
 <section id="results" class="hidden">
-  <div class="eyebrow">Expediente concluido</div><h1>Informe final de la brigada</h1>
+  <div class="eyebrow">Expediente concluido</div>
+  <h1>Informe final de la brigada</h1>
+
   <div class="panel">
-    <p>Brigada investigadora</p><h2 id="resultTeam"></h2>
-    <div class="score"><span id="finalScore">0</span><span style="font-size:1.3rem">/100</span></div>
-    <div class="progress"><div id="finalBar"></div></div>
-    <h2 id="resultLevel"></h2><p id="resultMessage"></p>
-    <h2>Resumen por etapa</h2><div id="stageScores"></div>
-    <h2>Conclusión del expediente</h2><p id="conclusion"></p>
-    <p class="notice small">El puntaje refleja las respuestas correctas del juego. La conclusión es formativa: en una torre real se necesitan datos operativos suficientes antes de confirmar una causa raíz.</p>
+    <p>Brigada investigadora</p>
+    <h2 id="resultTeam"></h2>
+
+    <div class="score">
+      <span id="finalScore">0</span>
+      <span style="font-size:1.3rem">/100</span>
+    </div>
+
+    <div class="progress">
+      <div id="finalBar"></div>
+    </div>
+
+    <h2 id="resultLevel"></h2>
+    <p id="resultMessage"></p>
+
+    <h2>Resumen por etapa</h2>
+    <div id="stageScores"></div>
+
+    <h2>Conclusión del expediente</h2>
+    <p id="conclusion"></p>
+
+    <p class="notice small">
+      El puntaje refleja las respuestas correctas del juego.
+      La conclusión es formativa: en una torre real se necesitan
+      datos operativos suficientes antes de confirmar una causa raíz.
+    </p>
+
     <button onclick="window.print()">Imprimir informe / Guardar PDF</button>
     <button class="secondary" onclick="restartGame()">Volver al inicio</button>
   </div>
 </section>
-</main>
-<footer>EXPEDIENTE 07 · Investigación académica de transferencia de calor</footer>
 
+</main>
+
+<footer>
+  EXPEDIENTE 07 · Investigación académica de transferencia de calor
+</footer>
 <script>
 const stages = [
 {
- title:"Etapa 1 · Apertura del expediente",
- intro:"Comprende la función de la torre y los mecanismos que permiten enfriar el agua.",
- clues:[
-  ["Pista 1 — Reporte de operación","El agua caliente entra a la torre y debe salir a una temperatura menor."],
-  ["Pista 2 — Principio físico","En una torre evaporativa, el agua y el aire entran en contacto; parte del agua se evapora y transfiere energía al aire."]
- ],
- questions:[
-  {text:"¿Cuál es la función principal de una torre de enfriamiento?",options:["Calentar el agua hasta su punto de ebullición.","Rechazar calor del agua hacia el ambiente.","Aumentar la presión del agua.","Separar sólidos disueltos mediante filtración."],answer:1,explanation:"La torre rechaza calor al ambiente mediante transferencia de calor y masa entre el agua y el aire."},
-  {text:"¿Qué fenómeno contribuye de manera importante al enfriamiento en una torre evaporativa?",options:["La evaporación de una fracción del agua.","La congelación de toda el agua.","La reacción del agua con el relleno.","La conducción a través de una pared exclusivamente."],answer:0,explanation:"La evaporación requiere energía, que se extrae del agua y favorece su enfriamiento."}
- ]},
+  title: "Etapa 1 · Apertura del expediente",
+  intro: "Comprende la función de la torre y los mecanismos que permiten enfriar el agua.",
+  clues: [
+    [
+      "Pista 1 — Reporte de operación",
+      "El agua caliente entra a la torre y debe salir a una temperatura menor."
+    ],
+    [
+      "Pista 2 — Principio físico",
+      "En una torre evaporativa, el agua y el aire entran en contacto; parte del agua se evapora y transfiere energía al aire."
+    ]
+  ],
+  questions: [
+    {
+      text: "¿Cuál es la función principal de una torre de enfriamiento?",
+      options: [
+        "Calentar el agua hasta su punto de ebullición.",
+        "Rechazar calor del agua hacia el ambiente.",
+        "Aumentar la presión del agua.",
+        "Separar sólidos disueltos mediante filtración."
+      ],
+      answer: 1,
+      explanation: "La torre rechaza calor al ambiente mediante transferencia de calor y masa entre el agua y el aire."
+    },
+    {
+      text: "¿Qué fenómeno contribuye de manera importante al enfriamiento en una torre evaporativa?",
+      options: [
+        "La evaporación de una fracción del agua.",
+        "La congelación de toda el agua.",
+        "La reacción del agua con el relleno.",
+        "La conducción a través de una pared exclusivamente."
+      ],
+      answer: 0,
+      explanation: "La evaporación requiere energía, que se extrae del agua y favorece su enfriamiento."
+    }
+  ]
+},
 {
- title:"Etapa 2 · Análisis de temperaturas",
- intro:"Usa los datos térmicos para calcular el enfriamiento y reconocer qué información falta.",
- clues:[
-  ["Pista 1 — Temperaturas registradas","Temperatura de entrada del agua: 40 °C. Temperatura de salida: 34 °C."],
-  ["Pista 2 — Objetivo de operación","La temperatura objetivo de salida es 30 °C. La temperatura de bulbo húmedo del aire de entrada es 28 °C."],
-  ["Pista 3 — Herramienta de cálculo","Para el calor sensible cedido por el agua: Q̇ = ṁ Cp (Tentrada − Tsalida), si Cp es aproximadamente constante."]
- ],
- questions:[
-  {text:"Con entrada a 40 °C y salida a 34 °C, ¿cuál es la disminución de temperatura del agua?",options:["6 °C","34 °C","74 °C","−6 °C"],answer:0,explanation:"ΔT de enfriamiento = 40 − 34 = 6 °C."},
-  {text:"Si el agua sale a 34 °C y la temperatura objetivo es 30 °C, ¿cuánto supera el objetivo?",options:["2 °C","4 °C","6 °C","64 °C"],answer:1,explanation:"34 − 30 = 4 °C por encima del objetivo."}
- ]},
+  title: "Etapa 2 · Análisis de temperaturas",
+  intro: "Usa los datos térmicos para calcular el enfriamiento y reconocer qué información falta.",
+  clues: [
+    [
+      "Pista 1 — Temperaturas registradas",
+      "Temperatura de entrada del agua: 40 °C. Temperatura de salida: 34 °C."
+    ],
+    [
+      "Pista 2 — Objetivo de operación",
+      "La temperatura objetivo de salida es 30 °C. La temperatura de bulbo húmedo del aire de entrada es 28 °C."
+    ],
+    [
+      "Pista 3 — Herramienta de cálculo",
+      "Para el calor sensible cedido por el agua: Q̇ = ṁ Cp (Tentrada − Tsalida), si Cp es aproximadamente constante."
+    ]
+  ],
+  questions: [
+    {
+      text: "Con entrada a 40 °C y salida a 34 °C, ¿cuál es la disminución de temperatura del agua?",
+      options: [
+        "6 °C",
+        "34 °C",
+        "74 °C",
+        "−6 °C"
+      ],
+      answer: 0,
+      explanation: "La disminución de temperatura es 40 − 34 = 6 °C."
+    },
+    {
+      text: "Si el agua sale a 34 °C y la temperatura objetivo es 30 °C, ¿cuánto supera el objetivo?",
+      options: [
+        "2 °C",
+        "4 °C",
+        "6 °C",
+        "64 °C"
+      ],
+      answer: 1,
+      explanation: "La temperatura de salida supera el objetivo en 34 − 30 = 4 °C."
+    }
+  ]
+},
 {
- title:"Etapa 3 · Diagnóstico operacional",
- intro:"Determina qué variables pueden explicar un desempeño térmico menor al esperado.",
- clues:[
-  ["Pista 1 — Contacto entre fases","Una distribución irregular del agua puede reducir el área efectiva de contacto con el aire."],
-  ["Pista 2 — Flujo de aire","Cambios en el flujo de aire pueden alterar la transferencia de calor y masa; el efecto depende de las condiciones reales de operación."],
-  ["Pista 3 — Inspección pendiente","No se ha confirmado si hay obstrucciones, problemas en ventiladores o una distribución deficiente del agua."]
- ],
- questions:[
-  {text:"¿Cuál de estas condiciones puede reducir el desempeño de la torre?",options:["Distribución deficiente del agua sobre el relleno.","Contacto adecuado entre agua y aire.","Mantenimiento apropiado.","Medición confiable de temperaturas."],answer:0,explanation:"Una distribución deficiente reduce el contacto efectivo entre el agua y el aire."},
-  {text:"Ante una temperatura de salida superior al objetivo, ¿cuál es la conclusión técnica más responsable?",options:["El ventilador está dañado con certeza.","La causa es necesariamente una falla mecánica.","Se deben revisar datos y condiciones de operación antes de confirmar la causa raíz.","La torre debe reemplazarse inmediatamente."],answer:2,explanation:"Una temperatura elevada es una señal de desempeño, no una prueba única de una causa específica. Se deben evaluar varias evidencias."}
- ]},
+  title: "Etapa 3 · Diagnóstico operacional",
+  intro: "Determina qué variables pueden explicar un desempeño térmico menor al esperado.",
+  clues: [
+    [
+      "Pista 1 — Contacto entre fases",
+      "Una distribución irregular del agua puede reducir el área efectiva de contacto con el aire."
+    ],
+    [
+      "Pista 2 — Flujo de aire",
+      "Cambios en el flujo de aire pueden alterar la transferencia de calor y masa; el efecto depende de las condiciones reales de operación."
+    ],
+    [
+      "Pista 3 — Inspección pendiente",
+      "No se ha confirmado si hay obstrucciones, problemas en ventiladores o una distribución deficiente del agua."
+    ]
+  ],
+  questions: [
+    {
+      text: "¿Cuál de estas condiciones puede reducir el desempeño de la torre?",
+      options: [
+        "Distribución deficiente del agua sobre el relleno.",
+        "Contacto adecuado entre agua y aire.",
+        "Mantenimiento apropiado.",
+        "Medición confiable de temperaturas."
+      ],
+      answer: 0,
+      explanation: "Una distribución deficiente reduce el contacto efectivo entre el agua y el aire."
+    },
+    {
+      text: "Ante una temperatura de salida superior al objetivo, ¿cuál es la conclusión técnica más responsable?",
+      options: [
+        "El ventilador está dañado con certeza.",
+        "La causa es necesariamente una falla mecánica.",
+        "Se deben revisar datos y condiciones de operación antes de confirmar la causa raíz.",
+        "La torre debe reemplazarse inmediatamente."
+      ],
+      answer: 2,
+      explanation: "Una temperatura elevada es una señal de desempeño, no una prueba única de una causa específica."
+    }
+  ]
+},
 {
- title:"Etapa 4 · Resolución del caso",
- intro:"Interpreta el límite de enfriamiento y selecciona la siguiente acción de investigación.",
- clues:[
-  ["Pista 1 — Bulbo húmedo","La temperatura de bulbo húmedo del aire de entrada es una referencia importante para evaluar el límite de enfriamiento evaporativo."],
-  ["Pista 2 — Approach","Approach = temperatura del agua fría a la salida − temperatura de bulbo húmedo del aire a la entrada."],
-  ["Pista 3 — Próxima acción","Antes de dictaminar la causa, compara temperaturas, caudales, condiciones ambientales y estado del sistema de distribución y ventilación."]
- ],
- questions:[
-  {text:"Con agua fría de salida a 34 °C y bulbo húmedo de entrada a 28 °C, ¿cuál es el approach?",options:["2 °C","6 °C","28 °C","62 °C"],answer:1,explanation:"Approach = 34 − 28 = 6 °C."},
-  {text:"¿Cuál es la mejor recomendación final con las evidencias disponibles?",options:["Declarar una falla del ventilador sin inspección.","Cambiar todo el relleno inmediatamente.","Registrar y verificar condiciones de operación e inspeccionar distribución de agua y flujo de aire antes de concluir.","Ignorar el valor de bulbo húmedo."],answer:2,explanation:"La causa raíz debe confirmarse con inspecciones y datos suficientes, no con una sola temperatura."}
- ]}
+  title: "Etapa 4 · Resolución del caso",
+  intro: "Interpreta el límite de enfriamiento y selecciona la siguiente acción de investigación.",
+  clues: [
+    [
+      "Pista 1 — Bulbo húmedo",
+      "La temperatura de bulbo húmedo del aire de entrada es una referencia importante para evaluar el límite de enfriamiento evaporativo."
+    ],
+    [
+      "Pista 2 — Approach",
+      "Approach = temperatura del agua fría a la salida − temperatura de bulbo húmedo del aire a la entrada."
+    ],
+    [
+      "Pista 3 — Próxima acción",
+      "Antes de dictaminar la causa, compara temperaturas, caudales, condiciones ambientales y estado del sistema de distribución y ventilación."
+    ]
+  ],
+  questions: [
+    {
+      text: "Con agua fría de salida a 34 °C y bulbo húmedo de entrada a 28 °C, ¿cuál es el approach?",
+      options: [
+        "2 °C",
+        "6 °C",
+        "28 °C",
+        "62 °C"
+      ],
+      answer: 1,
+      explanation: "Approach = 34 − 28 = 6 °C."
+    },
+    {
+      text: "¿Cuál es la mejor recomendación final con las evidencias disponibles?",
+      options: [
+        "Declarar una falla del ventilador sin inspección.",
+        "Cambiar todo el relleno inmediatamente.",
+        "Registrar y verificar condiciones de operación e inspeccionar distribución de agua y flujo de aire antes de concluir.",
+        "Ignorar el valor de bulbo húmedo."
+      ],
+      answer: 2,
+      explanation: "La causa raíz debe confirmarse con inspecciones y datos suficientes, no con una sola temperatura."
+    }
+  ]
+}
 ];
 
-let team="", stageIndex=0, questionIndex=0, stageResults=[], totalScore=0, answered=false;
+let team = "";
+let stageIndex = 0;
+let questionIndex = 0;
+let stageResults = [];
+let totalScore = 0;
+let answered = false;
 
-function startGame(){
- const name=document.getElementById("teamName").value.trim();
- if(!name){alert("Escribe el nombre de tu brigada antes de iniciar.");return;}
- team=name;stageIndex=0;questionIndex=0;stageResults=[];totalScore=0;
- document.getElementById("home").classList.add("hidden");
- document.getElementById("results").classList.add("hidden");
- document.getElementById("game").classList.remove("hidden");
- document.getElementById("currentTeam").textContent=team;
- renderStage();
+function startGame() {
+  const name = document.getElementById("teamName").value.trim();
+
+  if (!name) {
+    alert("Escribe el nombre de tu brigada antes de iniciar.");
+    return;
+  }
+
+  team = name;
+  stageIndex = 0;
+  questionIndex = 0;
+  stageResults = [];
+  totalScore = 0;
+
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  document.getElementById("currentTeam").textContent = team;
+
+  renderStage();
 }
-function renderStage(){
- const s=stages[stageIndex];
- document.getElementById("stageTitle").textContent=s.title;
- document.getElementById("stageCounter").textContent="Etapa "+(stageIndex+1)+" de "+stages.length;
- document.getElementById("stageIntro").textContent=s.intro;
- document.getElementById("progressBar").style.width=(stageIndex/stages.length*100)+"%";
- const clues=document.getElementById("clues");clues.innerHTML="";
- s.clues.forEach(c=>{
-  const box=document.createElement("div");box.className="clue";
-  const title=document.createElement("strong");title.textContent=c[0];
-  const p=document.createElement("p");p.textContent=c[1];p.style.marginBottom="0";
-  box.append(title,p);clues.appendChild(box);
- });
- document.getElementById("showQuestionButton").classList.remove("hidden");
- document.getElementById("questionPanel").classList.add("hidden");
- document.getElementById("clueInstruction").textContent="Lee las evidencias antes de responder.";
- questionIndex=0;
+
+function renderStage() {
+  const stage = stages[stageIndex];
+
+  document.getElementById("stageTitle").textContent = stage.title;
+  document.getElementById("stageCounter").textContent =
+    "Etapa " + (stageIndex + 1) + " de " + stages.length;
+
+  document.getElementById("stageIntro").textContent = stage.intro;
+  document.getElementById("progressBar").style.width =
+    (stageIndex / stages.length * 100) + "%";
+
+  const clues = document.getElementById("clues");
+  clues.innerHTML = "";
+
+  stage.clues.forEach(clue => {
+    const box = document.createElement("div");
+    box.className = "clue";
+
+    const title = document.createElement("strong");
+    title.textContent = clue[0];
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = clue[1];
+    paragraph.style.marginBottom = "0";
+
+    box.appendChild(title);
+    box.appendChild(paragraph);
+    clues.appendChild(box);
+  });
+
+  document.getElementById("showQuestionButton").classList.remove("hidden");
+  document.getElementById("questionPanel").classList.add("hidden");
+  document.getElementById("clueInstruction").textContent =
+    "Lee las evidencias antes de responder.";
+
+  questionIndex = 0;
 }
-function showQuestion(){
- document.getElementById("showQuestionButton").classList.add("hidden");
- document.getElementById("questionPanel").classList.remove("hidden");
- renderQuestion();
+
+function showQuestion() {
+  document.getElementById("showQuestionButton").classList.add("hidden");
+  document.getElementById("questionPanel").classList.remove("hidden");
+  renderQuestion();
 }
-function renderQuestion(){
- const q=stages[stageIndex].questions[questionIndex];answered=false;
- document.getElementById("questionNumber").textContent="Pregunta "+(questionIndex+1)+" de "+stages[stageIndex].questions.length;
- document.getElementById("questionText").textContent=q.text;
- const options=document.getElementById("options");options.innerHTML="";
- q.options.forEach((o,i)=>{
-  const label=document.createElement("label");label.className="option";
-  const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.value=i;
-  const span=document.createElement("span");span.textContent=o;
-  label.append(radio,span);options.appendChild(label);
- });
- document.getElementById("answerFeedback").classList.add("hidden");
- document.getElementById("answerButton").classList.remove("hidden");
- document.getElementById("answerButton").disabled=false;
- document.getElementById("nextButton").classList.add("hidden");
+
+function renderQuestion() {
+  const question = stages[stageIndex].questions[questionIndex];
+  answered = false;
+
+  document.getElementById("questionNumber").textContent =
+    "Pregunta " + (questionIndex + 1) + " de " +
+    stages[stageIndex].questions.length;
+
+  document.getElementById("questionText").textContent = question.text;
+
+  const options = document.getElementById("options");
+  options.innerHTML = "";
+
+  question.options.forEach((option, index) => {
+    const label = document.createElement("label");
+    label.className = "option";
+
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = index;
+
+    const text = document.createElement("span");
+    text.textContent = option;
+
+    label.appendChild(radio);
+    label.appendChild(text);
+    options.appendChild(label);
+  });
+
+  document.getElementById("answerFeedback").classList.add("hidden");
+  document.getElementById("answerButton").classList.remove("hidden");
+  document.getElementById("answerButton").disabled = false;
+  document.getElementById("nextButton").classList.add("hidden");
 }
-function submitAnswer(){
- if(answered)return;
- const selected=document.querySelector('input[name="answer"]:checked');
- if(!selected){alert("Selecciona una opción antes de confirmar.");return;}
- const q=stages[stageIndex].questions[questionIndex];
- const ok=Number(selected.value)===q.answer;
- const pointsEach=25/stages.length/stages[stageIndex].questions.length;
- const points=ok?pointsEach:0;
- totalScore+=points;
- if(!stageResults[stageIndex])stageResults[stageIndex]={title:stages[stageIndex].title,points:0,correct:0,total:stages[stageIndex].questions.length};
- stageResults[stageIndex].points+=points;
- if(ok)stageResults[stageIndex].correct++;
- answered=true;
- document.querySelectorAll('input[name="answer"]').forEach(el=>el.disabled=true);
- const fb=document.getElementById("answerFeedback");fb.classList.remove("hidden");
- fb.innerHTML="";
- const strong=document.createElement("strong");strong.className=ok?"correct":"incorrect";strong.textContent=ok?"¡Correcto!":"Respuesta incorrecta.";
- const p=document.createElement("p");p.textContent=q.explanation;p.style.marginBottom="0";
- fb.append(strong,p);
- document.getElementById("answerButton").classList.add("hidden");
- const next=document.getElementById("nextButton");next.classList.remove("hidden");
- const lastQuestion=questionIndex===stages[stageIndex].questions.length-1;
- const lastStage=stageIndex===stages.length-1;
- next.textContent=lastQuestion?(lastStage?"Ver informe final →":"Siguiente etapa →"):"Siguiente pregunta →";
+
+function submitAnswer() {
+  if (answered) return;
+
+  const selected = document.querySelector(
+    'input[name="answer"]:checked'
+  );
+
+  if (!selected) {
+    alert("Selecciona una opción antes de confirmar.");
+    return;
+  }
+
+  const question = stages[stageIndex].questions[questionIndex];
+  const isCorrect = Number(selected.value) === question.answer;
+
+  const pointsPerQuestion = 100 /
+    stages.reduce((sum, stage) => sum + stage.questions.length, 0);
+
+  const points = isCorrect ? pointsPerQuestion : 0;
+  totalScore += points;
+
+  if (!stageResults[stageIndex]) {
+    stageResults[stageIndex] = {
+      title: stages[stageIndex].title,
+      points: 0,
+      correct: 0,
+      total: stages[stageIndex].questions.length
+    };
+  }
+
+  stageResults[stageIndex].points += points;
+
+  if (isCorrect) {
+    stageResults[stageIndex].correct++;
+  }
+
+  answered = true;
+
+  document.querySelectorAll('input[name="answer"]').forEach(input => {
+    input.disabled = true;
+  });
+
+  const feedback = document.getElementById("answerFeedback");
+  feedback.classList.remove("hidden");
+  feedback.innerHTML = "";
+
+  const heading = document.createElement("strong");
+  heading.className = isCorrect ? "correct" : "incorrect";
+  heading.textContent = isCorrect ? "¡Correcto!" : "Respuesta incorrecta.";
+
+  const explanation = document.createElement("p");
+  explanation.textContent = question.explanation;
+  explanation.style.marginBottom = "0";
+
+  feedback.appendChild(heading);
+  feedback.appendChild(explanation);
+
+  document.getElementById("answerButton").classList.add("hidden");
+
+  const nextButton = document.getElementById("nextButton");
+  nextButton.classList.remove("hidden");
+
+  const lastQuestion =
+    questionIndex === stages[stageIndex].questions.length - 1;
+
+  const lastStage = stageIndex === stages.length - 1;
+
+  if (!lastQuestion) {
+    nextButton.textContent = "Siguiente pregunta →";
+  } else if (!lastStage) {
+    nextButton.textContent = "Siguiente etapa →";
+  } else {
+    nextButton.textContent = "Ver informe final →";
+  }
 }
-function nextQuestion(){
- if(!answered)return;
- if(questionIndex<stages[stageIndex].questions.length-1){questionIndex++;renderQuestion();return;}
- if(stageIndex<stages.length-1){stageIndex++;renderStage();return;}
- showResults();
+
+function nextQuestion() {
+  if (!answered) return;
+
+  if (questionIndex < stages[stageIndex].questions.length - 1) {
+    questionIndex++;
+    renderQuestion();
+    return;
+  }
+
+  if (stageIndex < stages.length - 1) {
+    stageIndex++;
+    renderStage();
+    return;
+  }
+
+  showResults();
 }
-function showResults(){
- document.getElementById("game").classList.add("hidden");
- document.getElementById("results").classList.remove("hidden");
- const score=Math.round(totalScore);
- document.getElementById("resultTeam").textContent=team;
- document.getElementById("finalScore").textContent=score;
- document.getElementById("finalBar").style.width=score+"%";
- let level,message;
- if(score>=88){level="Investigación sobresaliente";message="La brigada demostró un sólido dominio de los conceptos evaluados.";}
- else if(score>=63){level="Investigación satisfactoria";message="La brigada resolvió buena parte del caso. Repasa las preguntas falladas para fortalecer el diagnóstico.";}
- else{level="Expediente por reforzar";message="Conviene revisar las pistas y los fundamentos de transferencia de calor antes de repetir la investigación.";}
- document.getElementById("resultLevel").textContent=level;
- document.getElementById("resultMessage").textContent=message;
- const summary=document.getElementById("stageScores");summary.innerHTML="";
- stageResults.forEach((r,i)=>{
-  const p=document.createElement("p");
-  p.textContent=r.title+": "+Math.round(r.points)+"/25 puntos ("+r.correct+"/"+r.total+" correctas).";
-  summary.appendChild(p);
- });
- document.getElementById("conclusion").textContent=score>=75?
- "La brigada identificó los conceptos clave y propuso una verificación basada en evidencias. En una investigación real, debe confirmarse el diagnóstico con mediciones e inspección de los equipos.":
- "La brigada debe reforzar la interpretación de temperaturas, el cálculo de approach y la evaluación de variables operacionales. No es posible confirmar una causa raíz con una sola evidencia.";
+
+function showResults() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+
+  const score = Math.round(totalScore);
+
+  document.getElementById("resultTeam").textContent = team;
+  document.getElementById("finalScore").textContent = score;
+  document.getElementById("finalBar").style.width = score + "%";
+
+  let level;
+  let message;
+
+  if (score >= 88) {
+    level = "Investigación sobresaliente";
+    message = "La brigada demostró un sólido dominio de los conceptos evaluados.";
+  } else if (score >= 63) {
+    level = "Investigación satisfactoria";
+    message = "La brigada resolvió buena parte del caso. Repasa las preguntas falladas para fortalecer el diagnóstico.";
+  } else {
+    level = "Expediente por reforzar";
+    message = "Conviene revisar las pistas y los fundamentos de transferencia de calor antes de repetir la investigación.";
+  }
+
+  document.getElementById("resultLevel").textContent = level;
+  document.getElementById("resultMessage").textContent = message;
+
+  const summary = document.getElementById("stageScores");
+  summary.innerHTML = "";
+
+  stageResults.forEach(result => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent =
+      result.title + ": " + Math.round(result.points) +
+      " puntos (" + result.correct + "/" + result.total +
+      " respuestas correctas).";
+
+    summary.appendChild(paragraph);
+  });
+
+  document.getElementById("conclusion").textContent =
+    score >= 75
+      ? "La brigada identificó los conceptos clave y propuso una verificación basada en evidencias. En una investigación real, debe confirmarse el diagnóstico con mediciones e inspección de los equipos."
+      : "La brigada debe reforzar la interpretación de temperaturas, el cálculo de approach y la evaluación de variables operacionales. No es posible confirmar una causa raíz con una sola evidencia.";
 }
-function restartGame(){
- document.getElementById("results").classList.add("hidden");
- document.getElementById("game").classList.add("hidden");
- document.getElementById("home").classList.remove("hidden");
- document.getElementById("teamName").value="";
- document.getElementById("progressBar").style.width="0";
+
+function restartGame() {
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("teamName").value = "";
+  document.getElementById("progressBar").style.width = "0";
 }
 </script>
+
 </body>
 </html>
